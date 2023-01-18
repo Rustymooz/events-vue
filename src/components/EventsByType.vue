@@ -10,7 +10,7 @@
             <router-link :to="{name: 'Event', params: {id: event.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{event.name}}</h5>
-                <small>{{event.updatedAt}}</small>
+                <small>{{daysUntilEvent(event)}}</small>
                 </div>
                 <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                 <small>Donec id elit non mi porta.</small>
@@ -34,21 +34,18 @@
 
 <script>
 export default{
-    name: 'EventsList',
+    name: 'EventsByType',
     data(){
         return{
             search:'',
             events: [],
+            type: this.$route.params.type
         }
     },
     mounted(){
-        fetch('http://localhost:3000/api/events')
+        fetch('http://localhost:3000/api/eventstype/' + this.type)
             .then((res) => res.json())
-            .then(data => {
-                this.events = data
-                this.events.sort((a, b => (b.startDate - a.startDate)))
-            }
-            )
+            .then(data => this.events = data)
             .catch(err => console.log(err.message))
     },
     computed:{
@@ -56,7 +53,7 @@ export default{
             return this.events.filter(event => event.name.toLowerCase().includes(this.search.toLowerCase()))
         }
     },
-    methods:{
+    methods: {
         daysUntilEvent(event){
 
             var today = new Date();

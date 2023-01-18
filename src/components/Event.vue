@@ -1,4 +1,5 @@
 <template>
+    <Responsive :breakpoints="{samll: el => el.width <= 500}">
     <div v-if="event" class="card" style="width: 30rem;">
     <img class="card-img-top" src="../assets/avicii.png" alt="Card image cap">
     <div class="card-body">
@@ -16,6 +17,7 @@
     </div>
     </div>
     <div v-else>Loading event...</div>
+</Responsive>
 </template>
 
 <script>

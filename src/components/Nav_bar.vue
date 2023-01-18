@@ -1,4 +1,5 @@
 <template>
+    <Responsive :breakpoints="{samll: el => el.width <= 500}">
     <div class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link to="/">
         <img src="../assets/pikachu_pog.png" width="60" height="55">
@@ -17,13 +18,14 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            Events
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <router-link to="/eventslist" class="dropdown-item">All events</router-link>
+            <router-link :to="{name: 'EventsByType', params: {type: 'football'}}" class="dropdown-item">Football</router-link>
+            <router-link :to="{name: 'EventsByType', params: {type: 'cycling'}}" class="dropdown-item">Cycling</router-link>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <router-link class="dropdown-item" to="/addevent">Add event</router-link>
             </div>
         </li>
         <li class="nav-item">
@@ -35,12 +37,19 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-</div>
+    </div>
+</Responsive>
 </template>
 
 <script>
     export default{
-        name: "Nav_bar"
+        name: "Nav_bar",
+        data(){
+            return{
+                type: ''
+            }
+        }
+        
     }
 </script>
 

@@ -2,7 +2,7 @@
   <div id="nav">
     <Nav_bar/>
   </div>
-  <router-view/>
+  <router-view :key="$route.path"/>
 </template>
 
 <script>

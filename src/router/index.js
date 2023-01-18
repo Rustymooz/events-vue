@@ -3,6 +3,8 @@ import HomePage from '../views/HomePage.vue'
 import EventsList from '../components/EventsList.vue'
 import NotFound from '../views/NotFound.vue'
 import Event from '../components/Event.vue'
+import EventsByType from '../components/EventsByType.vue'
+import AddEvent from '../components/AddEvent.vue'
 
 const routes = [
     {
@@ -16,9 +18,19 @@ const routes = [
         component: EventsList
     },
     {
+        path: '/eventslist/:type',
+        name: 'EventsByType',
+        component: EventsByType
+    },
+    {
         path: '/event/:id',
         name: 'Event',
         component: Event
+    },
+    {
+        path: '/addevent',
+        name: 'AddEvent',
+        component: AddEvent
     },
     {
         path: '/:catchAll(.*)',
